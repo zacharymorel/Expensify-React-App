@@ -3,25 +3,46 @@ console.log('App.js is running')
 // JSK - Javascript XML
 // Javascript syntax  extension
 
-let template = (
+const app = {
+	title: 'Indecision App',
+	subtitle: 'Put Your Hands in the Hands of a Computer',
+	options: ['One', 'Two']
+}
+
+const template = (
 	<div>
-		<h1>Indecision App</h1>
-		<p>This is some info</p>
+		<h1>{app.title}</h1>
+		{app.subtitle && <p>{app.subtitle}</p>}
+		<p>{app.options.length > 0 ? 'Here are your Options' : 'No Options'}</p>
 		<ol>
-			<li>foo</li>
-			<li>foo</li>
+			<li>Item One</li>
+			<li>Item Two</li>
 		</ol>
 	</div>
 )
 
-let templateTwo = (
+// ----------------------------------------
+
+const user ={
+	name: 'Zach',
+	age: 25,
+	location: 'Tampa'
+}
+
+function getLocation(location) {
+	if (location) {
+		return <p>Location: {location}</p>
+	}
+}
+
+const templateTwo = ( 
 	<div>
-		<h1>Zach Morel</h1>
-		<p>Age: 25</p>
-		<p>Location: Tampa</p>
+		<h1>{user.name ? user.name : 'Anonymous'}</h1>
+		{(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
+		{getLocation(user.location)}
 	</div>
 )
 
-let appRoot = document.getElementById('app')
+const appRoot = document.getElementById('app')
 
-ReactDOM.render(templateTwo, appRoot)
+ReactDOM.render(template, appRoot)
