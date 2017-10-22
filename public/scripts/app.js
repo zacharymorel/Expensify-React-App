@@ -1,37 +1,16 @@
 'use strict';
 
-console.log('App.js is running');
+// Create a Toggle Visibility button to show some text
 
-// JSK - Javascript XML
-// Javascript syntax  extension
+var visibility = false;
 
-var app = {
-  title: 'Indecision App',
-  subtitle: 'Put Your Hands in the Hands of a Computer',
-  options: []
-};
-
-var onFormSubmit = function onFormSubmit(e) {
-  e.preventDefault();
-
-  var option = e.target.elements.option.value;
-
-  if (option) {
-    app.options.push(option);
-    e.target.elements.option.value = '';
-  }
+var toggleVisiblity = function toggleVisiblity() {
+  visibility = !visibility;
   render();
 };
 
-var removeAll = function removeAll() {
-  app.options = [];
-  render();
-};
-
-var onMakeDecision = function onMakeDecision() {
-  var randomNum = Math.floor(Math.random() * app.options.length);
-  var option = app.options[randomNum];
-  alert(option);
+var show = {
+  text: 'Here are somethings'
 };
 
 var appRoot = document.getElementById('app');
@@ -43,47 +22,20 @@ var render = function render() {
     React.createElement(
       'h1',
       null,
-      app.title
-    ),
-    app.subtitle && React.createElement(
-      'p',
-      null,
-      app.subtitle
-    ),
-    React.createElement(
-      'p',
-      null,
-      app.options.length > 0 ? 'Here are your Options' : 'No Options'
+      'Visibility Toggle'
     ),
     React.createElement(
       'button',
-      { disabled: app.options.length === 0, onClick: onMakeDecision },
-      'What Should I Do?'
+      { onClick: toggleVisiblity },
+      visibility ? 'Hide Details' : 'Show Details'
     ),
-    React.createElement(
-      'button',
-      { onClick: removeAll },
-      'Remove All'
-    ),
-    React.createElement(
-      'ol',
+    visibility && React.createElement(
+      'div',
       null,
-      app.options.map(function (option) {
-        return React.createElement(
-          'li',
-          { key: option },
-          option
-        );
-      })
-    ),
-    React.createElement(
-      'form',
-      { onSubmit: onFormSubmit },
-      React.createElement('input', { type: 'text', name: 'option' }),
       React.createElement(
-        'button',
+        'p',
         null,
-        'Add Option'
+        'There are some detials you should be able to see.'
       )
     )
   );
