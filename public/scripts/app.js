@@ -1,44 +1,90 @@
 'use strict';
 
-// arguments object - is no longer bound with arrow functions
+console.log('App.js is running');
 
-// const add = function (a, b) {
-//     console.log(arguments)
-//     return a + b
-// }
+// JSK - Javascript XML
+// Javascript syntax  extension
 
-var add = function add(a, b) {
-    // console.log(arguments)
-    return a + b;
+var app = {
+	title: 'Indecision App',
+	subtitle: 'Put Your Hands in the Hands of a Computer',
+	options: ['One', 'Two']
 };
 
-console.log(add(55, 1, 1001));
+var template = React.createElement(
+	'div',
+	null,
+	React.createElement(
+		'h1',
+		null,
+		app.title
+	),
+	app.subtitle && React.createElement(
+		'p',
+		null,
+		app.subtitle
+	),
+	React.createElement(
+		'p',
+		null,
+		app.options.length > 0 ? 'Here are your Options' : 'No Options'
+	),
+	React.createElement(
+		'ol',
+		null,
+		React.createElement(
+			'li',
+			null,
+			'Item One'
+		),
+		React.createElement(
+			'li',
+			null,
+			'Item Two'
+		)
+	)
+);
 
-// this keyword - no longer bound
+// ----------------------------------------
 
-var user = {
-    name: 'Andrew',
-    cities: ['phili', 'New York', 'Tampa'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
-
-        return this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        });
-    }
+var count = 0;
+var addOne = function addOne() {
+	return console.log('addOne');
+};
+var minusOne = function minusOne() {
+	return console.log('minusOne');
+};
+var reset = function reset() {
+	return console.log('RESET');
 };
 
-console.log(user.printPlacesLived());
+var templateTwo = React.createElement(
+	'div',
+	null,
+	React.createElement(
+		'h1',
+		null,
+		'Count: ',
+		count,
+		' '
+	),
+	React.createElement(
+		'button',
+		{ onClick: addOne },
+		'+1'
+	),
+	React.createElement(
+		'button',
+		{ onClick: minusOne },
+		'-1'
+	),
+	React.createElement(
+		'button',
+		{ onClick: reset },
+		'Reset'
+	)
+);
 
-var multiplier = {
-    numbers: [1, 2, 3],
-    multiplyBy: 2,
-    multiply: function multiply() {
-        var _this2 = this;
+var appRoot = document.getElementById('app');
 
-        return this.numbers.map(function (number) {
-            return _this2.multiplyBy * number;
-        });
-    }
-};
-console.log(multiplier.multiply());
+ReactDOM.render(templateTwo, appRoot);
