@@ -1,86 +1,44 @@
 'use strict';
 
-console.log('App.js is running');
+// arguments object - is no longer bound with arrow functions
 
-// JSK - Javascript XML
-// Javascript syntax  extension
+// const add = function (a, b) {
+//     console.log(arguments)
+//     return a + b
+// }
 
-var app = {
-	title: 'Indecision App',
-	subtitle: 'Put Your Hands in the Hands of a Computer',
-	options: ['One', 'Two']
+var add = function add(a, b) {
+    // console.log(arguments)
+    return a + b;
 };
 
-var template = React.createElement(
-	'div',
-	null,
-	React.createElement(
-		'h1',
-		null,
-		app.title
-	),
-	app.subtitle && React.createElement(
-		'p',
-		null,
-		app.subtitle
-	),
-	React.createElement(
-		'p',
-		null,
-		app.options.length > 0 ? 'Here are your Options' : 'No Options'
-	),
-	React.createElement(
-		'ol',
-		null,
-		React.createElement(
-			'li',
-			null,
-			'Item One'
-		),
-		React.createElement(
-			'li',
-			null,
-			'Item Two'
-		)
-	)
-);
+console.log(add(55, 1, 1001));
 
-// ----------------------------------------
+// this keyword - no longer bound
 
 var user = {
-	name: 'Zach',
-	age: 25,
-	location: 'Tampa'
+    name: 'Andrew',
+    cities: ['phili', 'New York', 'Tampa'],
+    printPlacesLived: function printPlacesLived() {
+        var _this = this;
+
+        return this.cities.map(function (city) {
+            return _this.name + ' has lived in ' + city;
+        });
+    }
 };
 
-function getLocation(location) {
-	if (location) {
-		return React.createElement(
-			'p',
-			null,
-			'Location: ',
-			location
-		);
-	}
-}
+console.log(user.printPlacesLived());
 
-var templateTwo = React.createElement(
-	'div',
-	null,
-	React.createElement(
-		'h1',
-		null,
-		user.name ? user.name : 'Anonymous'
-	),
-	user.age && user.age >= 18 && React.createElement(
-		'p',
-		null,
-		'Age: ',
-		user.age
-	),
-	getLocation(user.location)
-);
+var multiplier = {
+    numbers: [1, 2, 3],
+    multiplyBy: 2,
+    multiply: function multiply() {
+        var _this2 = this;
 
-var appRoot = document.getElementById('app');
-
-ReactDOM.render(template, appRoot);
+        return this.numbers.map(function (number) {
+            return _this2.multiplyBy * number;
+        });
+    }
+};
+console.log(multiplier.multiply());
