@@ -42,49 +42,19 @@ var template = React.createElement(
 			null,
 			'Item Two'
 		)
-	)
-);
-
-// ----------------------------------------
-
-var count = 0;
-var addOne = function addOne() {
-	return console.log('addOne');
-};
-var minusOne = function minusOne() {
-	return console.log('minusOne');
-};
-var reset = function reset() {
-	return console.log('RESET');
-};
-
-var templateTwo = React.createElement(
-	'div',
-	null,
+	),
 	React.createElement(
-		'h1',
+		'form',
 		null,
-		'Count: ',
-		count,
-		' '
-	),
-	React.createElement(
-		'button',
-		{ onClick: addOne },
-		'+1'
-	),
-	React.createElement(
-		'button',
-		{ onClick: minusOne },
-		'-1'
-	),
-	React.createElement(
-		'button',
-		{ onClick: reset },
-		'Reset'
+		React.createElement('input', { type: 'text', name: 'option' }),
+		React.createElement(
+			'button',
+			null,
+			'Add Option'
+		)
 	)
 );
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
