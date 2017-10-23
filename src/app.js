@@ -1,4 +1,5 @@
 
+// Parent
 class IndecisionApp extends React.Component {
   render() {
     const title = 'Indecision'
@@ -16,7 +17,7 @@ class IndecisionApp extends React.Component {
   }
 }
 
-
+//  Child
 class Header extends React.Component {
   render() {
     return (
@@ -28,20 +29,34 @@ class Header extends React.Component {
   }
 }
 
+//  Child
 class Action extends React.Component {
+  handlePick() {
+    alert('handlePick')
+  }
   render() {
     return (
       <div>
-        <button>What Should I do?</button>
+        <button onClick={this.handlePick}>What Should I do?</button>
       </div>
     )
   }
 }
 
+//  Child
 class Options extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleRemoveAll = this.handleRemoveAll.bind(this)
+  }
+  handleRemoveAll() {
+    console.log(this.props.options)
+    // alert('remove All')
+  }
   render() {
     return (
       <div>
+        <button onClick={this.handleRemoveAll}>Remove All</button>
         {this.props.options.map((option) => <Option key={option} optionText={option}/>)}
         <Option />
       </div>
@@ -49,6 +64,7 @@ class Options extends React.Component {
   }
 }
 
+//  Child to Options
 class Option extends React.Component {
   render() {
     return (
@@ -59,11 +75,24 @@ class Option extends React.Component {
   }
 }
 
+//  Child
 class AddOption extends React.Component {
+  handleAddOption(e) {
+    e.preventDefault
+
+    const option = e.target.elements.option.value.trim()
+
+    if(option) {
+      alert(option)
+    }
+  }
   render() {
     return (
       <div>
-        <span>Add your options</span>
+        <form onSubmit={this.handleAddOption}>
+          <input type="text" name="option"/>
+          <button>Add Option</button>
+        </form>
       </div>
     )
   }

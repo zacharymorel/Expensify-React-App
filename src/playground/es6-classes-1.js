@@ -1,4 +1,13 @@
+const obj = {
+  name: 'Zach',
+  getName() {
+    return this.name
+  }
+}
 
+const getName = obj.getName.bind(obj)
+
+console.log(getName())
 // Set up contructor to take name and age (default to 0)
 
 //  PARENT CLASS
