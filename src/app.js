@@ -1,3 +1,6 @@
+// stateless functional component
+//   ^            ^             ^
+// It's stateless functional and a component
 
 // Parent
 class IndecisionApp extends React.Component {
@@ -18,13 +21,12 @@ class IndecisionApp extends React.Component {
       }
     })
   }
-  // handlePick - pass down to Action and setup onClick - bind here
-  // randomly pick an option and alert it
 
   handlePick() {
     this.setState(() => {
       const randomNum = Math.floor(Math.random() * this.state.options.length)
       const option = this.state.options[randomNum]
+      alert(option)
     })
   }
 
@@ -66,30 +68,27 @@ class IndecisionApp extends React.Component {
 }
 
 //  Child
-class Header extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.title}</h1>
-        <h2>{this.props.subTitle}</h2>
-      </div>
-    )
-  }
+const Header = (props) => {
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <h2>{props.subTitle}</h2>
+    </div>
+  )
 }
 
 //  Child
-class Action extends React.Component {
-  render() {
-    return (
-      <div>
-        <button onClick={this.props.handlePick}
-        disabled={!this.props.hasOptions}
-        >
-        What Should I do?
-        </button>
-      </div>
-    )
-  }
+const Action = (props) => {
+  return (
+    <div>
+      <button 
+        onClick={props.handlePick}
+        disabled={!props.hasOptions}
+      >
+      What Should I do?
+      </button>
+    </div>
+  )
 }
 
 //  Child
@@ -149,6 +148,15 @@ class AddOption extends React.Component {
   }
 }
 
+
+// const User = (props) => {
+//   return (
+//     <div>
+//       <p>Name: {props.name}</p>
+//       <p>Age: {props.age}</p>
+//     </div>
+//   )
+// }
 
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'))
