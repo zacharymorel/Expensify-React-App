@@ -19,10 +19,8 @@ class IndecisionApp extends React.Component {
     this.setState (() => ({ options: [] }))
   }
 
-  handleDeleteOption(optionToRemove) {
-    this.setState = ((prevState) => ({
-      options: prevState.options.filter((option) => optionToRemove !== option)
-    }))
+  handleDeleteOption(option) {
+    console.log('hdo', option)
   }
   
   handlePick() {
@@ -122,13 +120,7 @@ const Option = (props) => {
   return (
     <div>
       {props.optionText}
-      <button 
-        onClick={(e) => {
-          props.handleDeleteOption(props.optionText)
-        }}
-      >
-        Remove
-      </button>
+      <button onClick={props.handleDeleteOption}>Remove</button>
     </div>
   )
 }
