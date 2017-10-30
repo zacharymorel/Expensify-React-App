@@ -32,6 +32,21 @@ var IndecisionApp = function (_React$Component) {
   }
 
   _createClass(IndecisionApp, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      console.log('Fetching Data');
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      console.log('Saving Data');
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      console.log('Component will Unmount');
+    }
+  }, {
     key: 'handleDeleteOptions',
     value: function handleDeleteOptions() {
       this.setState(function () {
@@ -40,8 +55,14 @@ var IndecisionApp = function (_React$Component) {
     }
   }, {
     key: 'handleDeleteOption',
-    value: function handleDeleteOption(option) {
-      console.log('hdo', option);
+    value: function handleDeleteOption(optionToRemove) {
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.filter(function (option) {
+            return optionToRemove !== option;
+          })
+        };
+      });
     }
   }, {
     key: 'handlePick',
@@ -164,7 +185,11 @@ var Option = function Option(props) {
     props.optionText,
     React.createElement(
       'button',
-      { onClick: props.handleDeleteOption },
+      {
+        onClick: function onClick(e) {
+          props.handleDeleteOption(props.optionText);
+        }
+      },
       'Remove'
     )
   );

@@ -15,12 +15,29 @@ class IndecisionApp extends React.Component {
     }
   }
 
+  componentDidMount() {
+    console.log('Fetching Data')
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Saving Data')
+
+  }
+
+  componentWillUnmount() {
+    console.log('Component will Unmount')
+  }
+
   handleDeleteOptions() {
     this.setState (() => ({ options: [] }))
   }
 
-  handleDeleteOption(option) {
-    console.log('hdo', option)
+  handleDeleteOption(optionToRemove) {
+    this.setState((prevState) => ({
+      options: prevState.options.filter((option) => {
+        return optionToRemove !== option
+      })
+    }))
   }
   
   handlePick() {
@@ -120,7 +137,11 @@ const Option = (props) => {
   return (
     <div>
       {props.optionText}
-      <button onClick={props.handleDeleteOption}>Remove</button>
+      <button 
+        onClick={(e) => {
+          props.handleDeleteOption(props.optionText)
+        }}
+        >Remove</button>
     </div>
   )
 }
