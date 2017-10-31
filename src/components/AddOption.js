@@ -2,19 +2,12 @@ import React from 'react'
 
 //  Child
 export default class AddOption extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleAddOptionEvent = this.handleAddOptionEvent.bind(this)
-    this.state = {
-      error: undefined
-    }
-
-    
+  state = {
+    error: undefined
   }
-  
-  handleAddOptionEvent(e) {
+
+  handleAddOptionEvent = (e) => {
     e.preventDefault()
-    console.log('testing')
     const option = e.target.elements.option.value.trim()
     const error = this.props.handleAddOption(option)
     
