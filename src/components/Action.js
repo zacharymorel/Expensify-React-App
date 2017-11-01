@@ -1,17 +1,15 @@
 import React from 'react'
 
 //  Child
-const Action = (props) => {
-  return (
-    <div>
-      <button 
-        onClick={props.handlePick}
-        disabled={!props.hasOptions}
-      >
+const Action = (props) =>  (
+  <div>
+    <button 
+      onClick={props.handlePick}
+      disabled={!props.hasOptions}
+    >
       What Should I do?
-      </button>
-    </div>
-  )
-}
+    </button>
+  </div>
+)
 
 export default Action 
