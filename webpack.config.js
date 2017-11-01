@@ -1,6 +1,3 @@
-// where entry point is?
-// where to output file 
-
 const path = require('path')
 
 

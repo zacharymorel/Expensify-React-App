@@ -1,5 +1,5 @@
-# Indecision-React-App
-Udemy Course React App
+# Expensify
+Udemy Course React App # 2
 
 
 This is i'm learning the basics of React. 
@@ -9,3 +9,4 @@ Tech Spec so far:
   - Babel
   - Webpack
   - Scss
+  - React Router
